@@ -1,30 +1,38 @@
 from bs4 import BeautifulSoup as BS
 import requests,sys
 
-'''
-if len(sys.argv) > 1:
-    key = " ".join(sys.argv[1:])
-    key = key.replace(" ","+")
-else:
-    key = " "
-    raise ValueError("You provided me with nothing!")
-'''
+def reveal(query):
 
-key = str(input("What do you wanna look up? "))
+    '''Finds the query result from the Urban Dict website.'''
+    
+    ''' Tweak this if you want to use the script from the command line.
 
-base_url = "http://www.urbandictionary.com/define.php?term="
-new_url = base_url + key
+    if len(sys.argv) > 1:
+        key = " ".join(sys.argv[1:])
+        key = key.replace(" ","+")
+    else:
+        key = " "
+        raise ValueError("You provided me with nothing!")
+    '''
 
-result = requests.get(new_url)
-resultSoup = BS(result.text)
-meaning = resultSoup.select('.meaning')
+    base_url = "http://www.urbandictionary.com/define.php?term="
+    new_url = base_url + key
 
-count = 0
-if len(meaning) > 0:
-    for each in meaning:
-        print(each.getText())
-        count += 1
-        if count == 3: #Currently shows top three results. Tweak this if need be.
-            break
-else:
-    print("\n..Oops. What you looked up ain't does not exist!")
+    result = requests.get(new_url)
+    resultSoup = BS(result.text)
+    meaning = resultSoup.select('.meaning')
+
+    count = 0
+    if len(meaning) > 0:
+        for each in meaning:
+            print(each.getText())
+            count += 1
+            if count == 3: #Currently shows top three results. Change this if you have to.
+                break
+    else:
+        print("\n..Oops. What you looked up does not exist!")
+
+if __name__ == "__main__":
+    
+    key = str(input("What do you wanna look up? "))
+    reveal(key)
