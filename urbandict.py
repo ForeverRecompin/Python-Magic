@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup as BS
-import requests,webbrowser,sys
+import requests,sys
 
 '''
 if len(sys.argv) > 1:
