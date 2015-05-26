@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup as BS
+from urllib.parse import urlencode
 import requests,sys
 
 def reveal():
@@ -7,13 +8,16 @@ def reveal():
     
     if len(sys.argv) > 1:
         query = " ".join(sys.argv[1:])
-        query = query.replace(" ","+")
+        q = {"term":query}
+        query = urllib.urlencode(q)
     else:
         query = input("What do you wanna look up? ")
+        q = {"term":query}
+        query = urlencode(q)
     
-    base_url = "http://www.urbandictionary.com/define.php?term="
+    base_url = "http://www.urbandictionary.com/define.php?"
     new_url = base_url + query
-
+    print("URL:" + new_url + "\n" +"Meaning:")
     result = requests.get(new_url)
     resultSoup = BS(result.text)
     meaning = resultSoup.select('.meaning')
