@@ -9,7 +9,7 @@ def reveal():
         query = " ".join(sys.argv[1:])
         query = query.replace(" ","+")
     else:
-        query = str(input("What do you wanna look up? "))
+        query = input("What do you wanna look up? ")
     
     base_url = "http://www.urbandictionary.com/define.php?term="
     new_url = base_url + query
