@@ -9,7 +9,7 @@ def reveal():
     if len(sys.argv) > 1:
         query = " ".join(sys.argv[1:])
         q = {"term":query}
-        query = urllib.urlencode(q)
+        query = urlencode(q)
     else:
         query = input("What do you wanna look up? ")
         q = {"term":query}
