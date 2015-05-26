@@ -14,26 +14,22 @@ def reveal(query):
         key = " "
         raise ValueError("You provided me with nothing!")
     '''
-    try:
-        base_url = "http://www.urbandictionary.com/define.php?term="
-        new_url = base_url + key
+    base_url = "http://www.urbandictionary.com/define.php?term="
+    new_url = base_url + query
 
-        result = requests.get(new_url)
-        resultSoup = BS(result.text)
-        meaning = resultSoup.select('.meaning')
+    result = requests.get(new_url)
+    resultSoup = BS(result.text)
+    meaning = resultSoup.select('.meaning')
 
-        count = 0
-        if len(meaning) > 0:
-            for each in meaning:
-                print(each.getText())
-                count += 1
-                if count == 3: #Currently shows top three results. Change this if you have to.
-                    break
-        else:
-            print("\n..Oops. What you looked up does not exist!")
-    except:
-        
-        raise ConnectionError("OMG :(")
+    count = 0
+    if len(meaning) > 0:
+        for each in meaning:
+            print(each.getText())
+            count += 1
+            if count == 3: #Currently shows top three results. Change this if you have to.
+                break
+    else:
+        print("\n..Oops. What you looked up does not exist!")
 
 if __name__ == "__main__":
     
