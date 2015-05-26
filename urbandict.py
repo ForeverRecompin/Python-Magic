@@ -8,13 +8,11 @@ def reveal():
     
     if len(sys.argv) > 1:
         query = " ".join(sys.argv[1:])
-        q = {"term":query}
-        query = urlencode(q)
     else:
         query = input("What do you wanna look up? ")
-        q = {"term":query}
-        query = urlencode(q)
-    
+        
+    q = {"term":query}
+    query = urlencode(q)
     base_url = "http://www.urbandictionary.com/define.php?"
     new_url = base_url + query
     print("URL:" + new_url + "\n" +"Meaning:")
