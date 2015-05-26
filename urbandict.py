@@ -8,10 +8,10 @@ def reveal(query):
     ''' Tweak this if you want to use the script from the command line.
 
     if len(sys.argv) > 1:
-        key = " ".join(sys.argv[1:])
-        key = key.replace(" ","+")
+        query = " ".join(sys.argv[1:])
+        query = query.replace(" ","+")
     else:
-        key = " "
+        query = " "
         raise ValueError("You provided me with nothing!")
     '''
     base_url = "http://www.urbandictionary.com/define.php?term="
