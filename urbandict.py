@@ -17,7 +17,7 @@ def reveal():
     new_url = base_url + query
     print("URL:" + new_url + "\n" +"Meaning:")
     result = requests.get(new_url)
-    resultSoup = BS(result.text)
+    resultSoup = BS(result.text,'html.parser')
     meaning = resultSoup.select('.meaning')
     
     if len(meaning) > 0:
