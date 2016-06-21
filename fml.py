@@ -5,8 +5,8 @@ def reveal():
     '''Gets a random FML quote from fmylife.com'''
     url = "http://www.fmylife.com/random"
     result = requests.get(url)
-    resultSoup = BS(result.text)
-    random_quote = resultSoup.find(attrs={'class': 'post article'})
+    resultSoup = BS(result.text, 'lxml')
+    random_quote = resultSoup.find(attrs={'class': 'fmllink'})
     if len(random_quote) > 0:
         lol = random_quote.text
         print(lol[:lol.find("FML")+3]+"! xD")
